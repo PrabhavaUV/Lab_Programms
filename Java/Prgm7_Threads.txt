@@ -1,0 +1,74 @@
+class Thread1 extends Thread {
+    Object lock;
+
+    Thread1(Object l) {
+        lock = l;
+    }
+
+    public void run() {
+        synchronized (lock) {
+            try {
+               for(int i=1;i<=5;i++) {
+            	   System.out.println("Thread 1 is running: "+i);
+            	   sleep(100);
+               }
+             lock.notify();   
+
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+        System.out.println("Thread 1 executed.");
+    }
+}
+
+class Thread2 extends Thread {
+    Object lock;
+
+    Thread2(Object l) {
+        lock = l;
+    }
+
+    public void run() {
+        synchronized (lock) {
+            try {
+            	for(int i=1;i<=5;i++) {
+             	   System.out.println("Thread 2 is running: "+i);
+             	   sleep(100);
+                }                
+            	lock.wait();   
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+        System.out.println("Thread 2 executed.");
+    }
+}
+
+public class Prgm7 {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        Object o = new Object();
+
+        Thread1 t1 = new Thread1(o);
+        Thread2 t2 = new Thread2(o);
+
+        System.out.println("Thread 1: " + t1.getState());
+        System.out.println("Thread 2: " + t2.getState());
+
+        t2.start();   
+        Thread.sleep(500);
+        t1.start();   
+        Thread.sleep(500);
+        
+        System.out.println("Thread 1 after start: " + t1.getState());
+        System.out.println("Thread 2 after start: " + t2.getState());
+
+        t1.join();
+        t2.join();
+
+        System.out.println("Thread 1 final state: " + t1.getState());
+        System.out.println("Thread 2 final state: " + t2.getState());
+    }
+}

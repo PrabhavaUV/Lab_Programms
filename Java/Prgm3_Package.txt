@@ -1,0 +1,85 @@
+package area;
+
+public class Rectangle {
+
+	public void rectarea(float a, float b) {
+		System.out.println("Rectangle area:"+a*b);
+	}
+
+}
+
+
+
+package area;
+
+public class Square {
+
+	public void sqare(float a) {
+		System.out.println("Square area: "+a*a);
+	}
+
+}
+
+
+
+package area;
+
+public class Triangle {
+
+	public void triarea(float a, float b ) {
+		System.out.println("Triangle area: "+0.5*a*b);
+	}
+
+}
+
+
+
+import java.util.Scanner;
+
+import area.*;
+public class Prgm3 {
+
+	public static void main(String[] args) {
+		
+		Scanner sc= new Scanner(System.in);
+		Square s = new Square();
+		Triangle t = new Triangle();
+		Rectangle r = new Rectangle();
+		int c;
+		do {
+			System.out.println("1.Square\n2.Triangle\n3.Rectangle\n4.Exit");
+			c=sc.nextInt();
+			switch(c) {
+			case 1:
+				System.out.println("Enter side:");
+				float a=sc.nextFloat();
+				s.sqare(a);
+				break;
+				
+			case 2:
+				System.out.println("Enter base:");
+				float b=sc.nextFloat();
+				System.out.println("Enter height:");
+				float h=sc.nextFloat();
+				t.triarea(b,h);
+				break;
+				
+			case 3:
+				System.out.println("Enter x side:");
+				float x=sc.nextFloat();
+				System.out.println("Enter y side:");
+				float y=sc.nextFloat();
+				r.rectarea(x,y);
+				break;
+				
+			case 4:
+				System.out.println("Thank You");
+				break;
+
+			default:
+				System.out.println("Error");
+			}
+		}while(c!=4);
+	}
+
+}

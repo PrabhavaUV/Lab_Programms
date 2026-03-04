@@ -1,0 +1,74 @@
+
+import java.util.Scanner;
+
+class InvalidAge extends Exception{
+	InvalidAge(String a){
+		super(a);
+	}
+}
+class Insufficentbalance extends Exception{
+	Insufficentbalance(String a){
+		super(a);
+	}
+}
+public class Prgm6 {
+
+	static void agecheck(int a) throws InvalidAge{
+		if(a<0) {
+			throw new InvalidAge("Age cannot be less than 0");
+		}
+		else {
+			System.out.println("Valid age");
+		}
+	}
+	static void balcheck(int b) throws Insufficentbalance{
+		if (b<100) {
+			throw new Insufficentbalance("Balance cannot be less than 100");
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+
+		int c;
+		int a[]= {1,2,3};
+		
+		
+		do {
+			System.out.println("\n1.Validate Age\n2.Balance checker\n3.Print from array\n4.Exit");
+			c=sc.nextInt();
+			
+			switch(c) {
+			
+			case 1:
+				
+				try {
+					System.out.println("Enter age");
+					int a1=sc.nextInt();
+					agecheck(a1);
+				}catch(InvalidAge e) {
+					System.out.println(e);}
+				break;
+				
+			case 2:
+				try{
+					System.out.println("Enter balance");
+					int b=sc.nextInt();
+					balcheck(b);
+				}catch(Insufficentbalance e) {
+					System.out.println(e);
+				}
+				break;
+				
+			case 3:
+				try {
+					System.out.println("Array: "+a[5]);
+				}catch(ArrayIndexOutOfBoundsException e) {
+					System.out.println(e);
+				}
+				
+			}
+		}while(c!=4);
+		
+	}
+}

@@ -1,0 +1,61 @@
+class Bankaccount{
+	String name, actype;
+	int bal;
+	static int noaccounts=0;
+	
+	Bankaccount(String a){
+		noaccounts++;
+		name=a;
+		actype="Savings";
+		bal=0;
+	}
+	Bankaccount(String a,int b){
+		noaccounts++;
+		name=a;
+		actype="Savings";
+		bal=b;
+	}
+	
+	void add(int i, String s) {
+		bal=bal+i;
+		actype=s;
+	}
+	
+	void add(int i) {
+		bal=bal+i;
+	}
+	
+	public static void numacc() {
+		System.out.println("\nNumber of accounts: "+noaccounts+"\n");
+	}
+	
+	void display() {
+		System.out.println("Name: "+name);
+		System.out.println("Account type: "+actype);
+		System.out.println("Balance: "+bal);
+
+	}
+}
+public class Prgm2 {
+
+	public static void main(String[] args) {
+
+		Bankaccount.numacc();
+		
+		Bankaccount b1= new Bankaccount("Arun");		
+		b1.display();
+		b1.add(5000);
+		b1.display();
+		
+		Bankaccount.numacc();
+
+		Bankaccount b2= new Bankaccount("Kumar",10000);
+		b2.display();
+		b2.add(20000,"Current");
+		b2.display();
+		
+		Bankaccount.numacc();
+
+	}
+
+}

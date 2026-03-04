@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+interface Vehicle{
+	void engine();
+	void drive();
+}
+
+class Bike implements Vehicle{
+	public void engine() {
+		System.out.println("-----Bike information-----\n");
+		System.out.println("Bikes have 2 stroke engine");
+		System.out.println("More efficient than cars\n");
+
+	}
+	public void drive() {
+		System.out.println("Bikes have 2 wheels");
+		System.out.println("Bikes need more balance\n");
+	}
+}
+
+class Car implements Vehicle{
+	public void engine() {
+		System.out.println("-----Car information-----");
+		System.out.println("Car have 2 and 4 stroke engine");
+		System.out.println("Less efficient than bikes\n");
+
+	}
+	public void drive() {
+		System.out.println("Cars have 4 wheels");
+		System.out.println("Cars dont need more balance\n");
+	}
+}
+public class Prgm4 {
+
+	public static void main(String[] args) {
+
+		Scanner sc= new Scanner(System.in);
+		int c;
+		Vehicle v;
+		do {
+			System.out.println("1.Bike\n2.Car\n3.Exit");
+			c=sc.nextInt();
+			switch(c) {
+			case 1:
+				v= new Bike();
+				v.engine();
+				v.drive();
+				break;
+				
+			case 2:
+				v= new Car();
+				v.engine();
+				v.drive();
+				break;
+			
+			case 3:
+				System.out.println("Thank You");
+				break;
+			
+			default:
+				System.out.println("Error");
+			}
+		}while(c!=3);
+	}
+}

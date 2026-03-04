@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+interface Personal{
+	void persinfo();
+}
+interface Official{
+	void offinfo();
+}
+class Employee implements Personal, Official{
+	int age, empid;
+	String name, empos;
+	Employee(String n, int a, int id, String pos){
+		name=n;
+		age=a;
+		empid=id;
+		empos=pos;
+	}
+	public void persinfo() {
+		System.out.println("Name: "+name+"\nAge: "+age);
+	}
+	public void offinfo() {
+		System.out.println("Emp ID: "+empid+"\nEmp Posiotion: "+empos);
+	}
+}
+public class Prgm5 {
+
+	public static void main(String[] args) {
+
+		Scanner sc= new Scanner(System.in);
+		int c;
+		System.out.println("-----Collect information-----\n");
+		System.out.println("How many employee: ");
+		int k = sc.nextInt();
+		
+		Employee[] e =new Employee[k];
+		
+		sc.nextLine();
+		for(int i=0;i<k;i++) {
+			System.out.println("Name:");
+			String n=sc.nextLine();
+			System.out.println("Age:");
+			int a=sc.nextInt();
+			System.out.println("Emp ID:");
+			int eid=sc.nextInt();
+			sc.nextLine();
+			System.out.println("Position:");
+			String epos=sc.nextLine();
+			e[i]=new Employee(n,a,eid,epos);
+		}
+		
+		System.out.println("\n-----Display information-----\n");
+		do {
+			System.out.println("\n1.Personal\n2.Official\3.Exit");
+			c=sc.nextInt();
+			switch(c) {
+			case 1:
+				for(int i=0;i<k;i++) {
+					e[i].persinfo();}
+				break;
+			case 2:
+				for(int i=0;i<k;i++) {
+					e[i].offinfo();}
+				break;
+			case 3:
+				System.out.println("Thank You");
+				break;
+			default:
+				System.out.println("Error");
+			}
+		}while(c!=3);
+	}
+
+}
