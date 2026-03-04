@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<title>Inventory Managment System</title>
+</head>
+
+<body>
+<header class = "bg-warning text-white p-3 mb-4 text-center "><h1>Inventory Managmet System</h1></header>
+<div class="container">
+<div class="card shadow mt-5 mb-5 p-4 row w-100">
+<label for ="item" name="Item" class="mt-2 mb-2 p-1">Item:</label>
+<input id="item" type="text" name="item" placeholder="Enter item name" >
+<br><label for ="quan" name="Quantity" class="mt-2 mb-2 p-1">Quantity:</label>
+<input id="quan" type="number" name="quan" placeholder="Enter quantity(kgs)" >
+<br><label for ="price" name="Price" class="mt-2 mb-2 p-1">Price:</label>
+<input id="price" type="number" name="price" placeholder="Enter price" >
+
+<br><button class="btn  bg-secondary text-white mt-3" onclick="addItem()">Add</button>
+</div>
+</div>
+
+<div>
+<h2 class="text-center mt-2 mb-4">Items Added</h2>
+<table id="table" class = "table table-bordered table-hover mt-4">
+<thead class="table-dark ">
+<tr>
+<th>Item Name</th>
+<th>Quantity</th>
+<th>Price</th>
+<th>Amount</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody class="table table-hover"><th></th></tbody>
+</table>
+</div>
+
+<script>
+function addItem(){
+let item = document.getElementById('item').value;
+let quan = document.getElementById('quan').value;
+let price = document.getElementById('price').value;
+
+if( !item|| !quan|| !price ) return;
+
+let table= document.getElementById('table');
+let amount=quan*price;
+let row= table.insertRow()
+row.innerHTML = `
+        <td>${item}</td>
+        <td>${quan}</td>
+        <td>${price}</td>
+        <td>${amount}</td>
+        <td>  <button class="btn btn-sm btn-primary" onclick="editRow(this)">Edit</button>
+         <button class="btn bg-dark text-white"
+                onclick="this.parentElement.parentElement.remove()">
+                Remove
+            </button></td>`;
+
+
+document.getElementById('item').value='';
+document.getElementById('quan').value='';
+document.getElementById('price').value='';
+document.getElementById('amount').value='';
+}
+</script>
+<script>
+function editRow(btn) {
+  let row = btn.closest("tr");
+
+  let item = prompt("Update item name:", row.cells[0].innerText);
+  let quan = prompt("Update quantity:", row.cells[1].innerText);
+  let price = prompt("Update price:", row.cells[2].innerText);
+
+  if (item && quan && price) {
+    row.cells[0].innerText = item;
+    row.cells[1].innerText = quan;
+    row.cells[2].innerText = price;
+  }
+}
+</script>
+
+</body>
+</html>
+
