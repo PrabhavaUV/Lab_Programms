@@ -41,3 +41,39 @@ print("Reshaped array:\n", new_arr)
 
 flat = x.flatten()
 print("Flatten array:", flat)
+
+import pandas as pd
+
+# Create DataFrame
+data = {
+    "Name": ["Ram", "Sita", "Arjun"],
+    "Age": [20, 21, 19],
+    "Marks": [85, 90, 78]
+}
+
+df = pd.DataFrame(data)
+print("Original DataFrame")
+print(df)
+
+# 1. Add column
+df["Grade"] = ["A", "A", "B"]
+print("\nAfter adding column")
+print(df)
+
+# 2. loc
+print("\nUsing loc")
+print(df.loc[1])
+
+# 3. iloc
+print("\nUsing iloc")
+print(df.iloc[0])
+
+# 4. drop column
+df = df.drop("Age", axis=1)
+print("\nAfter dropping Age column")
+print(df)
+
+# 5. Add row
+df.loc[len(df)] = ["Meera", 88, "A"]
+print("\nAfter adding new row")
+print(df)
